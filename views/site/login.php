@@ -11,7 +11,7 @@
         <h2 class="title">Авторизация</h2>
 
         <?php if (isset($message) && $message): ?>
-            <div class="message message-error"><?= htmlspecialchars($message) ?></div>
+            <div class="message-error"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
 
         <?php if (app()->auth::check()): ?>
@@ -24,8 +24,8 @@
             <form method="post" class="form-group">
                 <div class="form">
                     <input type="hidden" name="csrf_token" value="<?= app()->auth::generateCSRF() ?>">
-                    <input type="text" name="login" placeholder="логин" required autocomplete="username">
-                    <input type="password" name="password" placeholder="пароль" required autocomplete="current-password">
+                    <input type="text" name="login" placeholder="логин">
+                    <input type="password" name="password" placeholder="пароль">
                 </div>
                 <button type="submit" class="btn-submit">Войти</button>
             </form>

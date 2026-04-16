@@ -18,6 +18,7 @@
                         <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
                     <?php else: ?>
                         <?php if (app()->auth::user()->id_role == 2): ?>
+                            <a href="<?= app()->route->getUrl('/books/add') ?>">Добавить книгу</a>
                             <a href="<?= app()->route->getUrl('/readers/add') ?>">Добавить читателя</a>
                         <?php endif; ?>
                         <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->first_name . ' ' . app()->auth::user()->last_name ?>)</a>

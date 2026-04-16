@@ -8,7 +8,6 @@
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    
     background: var(--color-bg-card);
     border-radius: 20px;
     box-shadow: 0 0px 50px var(--color-primary-rgba);
@@ -24,36 +23,41 @@
 .form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 25px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 60px;
 }
 
-.form input {
+.form input,
+.form select,
+.form textarea {
     width: 600px;
     padding: 16px 40px;
     outline: none;
-    
     border: 3px solid var(--color-primary);
     border-radius: 20px;
-    
     font-size: 24px;
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
     transition: all 0.3s ease;
+    resize: none;
 }
 
-.form input:focus {
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
 }
 
-.form-group input::placeholder {
+.form input::placeholder,
+.form textarea::placeholder {
     font-weight: var(--font-weight-bold);
     color: var(--color-primary);
 }
@@ -61,12 +65,10 @@
 .btn-submit {
     width: 340px;
     padding: 15px;
-    
     background-color: var(--color-primary);
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    
     font-size: 32px;
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-light);
@@ -83,7 +85,7 @@
     overflow-y: auto;
     
     font-size: 24px;
-    color: var(--color-error-text);
+    color: var(--color-error);
 }
 
 .message-success {
@@ -92,7 +94,7 @@
     overflow-y: auto;
     
     font-size: 24px;
-    color: var(--color-success-text);
+    color: var(--color-success);
 }
 
 .user-info {
@@ -101,4 +103,27 @@
     font-size: 30px;
     font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
+}
+
+.form-row{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.form-row input{
+    width: 290px;
+}
+
+.checkbox-label {
+    padding-left: 40px;
+    font-size: 24px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+}
+
+input[type="checkbox"] {
+    border: 2px solid var(--color-primary);
+    width: 25px;
+    height: 25px;
 }

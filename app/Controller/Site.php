@@ -8,6 +8,8 @@ use Model\Staff;
 use Src\Auth\Auth;
 use Src\Validator\Validator;
 use Model\Reader;
+use Model\Book;
+use Model\Author;
 
 class Site
 {
@@ -51,37 +53,75 @@ class Site
         return new View('site.add_librarian');
     }
 
-        public function addReader(Request $request): string
-        {
-            if ($request->method === 'POST') {
-                $validator = new Validator($request->all(), [
-                    'last_name' => ['required', 'max:255'],
-                    'first_name' => ['required', 'max:255'],
-                    'middle_name' => ['max:255'],
-                    'address' => ['required', 'max:255'],
-                    'phone_number' => ['required', 'phone'],
-                ], [
-                    'required' => 'Поле :field пусто',
-                    'max' => 'Поле :field должно содержать максимум :max символов',
-                    'phone' => 'Неверный формат телефона',
-                ]);
-                
-                if ($validator->fails()) {
-                    return new View('site.add_reader', [
-                        'error' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)
-                    ]);
-                }
-
-                if (Reader::create($request->all())) {
-                    return new View('site.add_reader', [
-                        'success' => 'Читатель успешно добавлен'
-                    ]);
-                }
-            }
+    public function addReader(Request $request): string
+    {
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'last_name' => ['required', 'max:255'],
+                'first_name' => ['required', 'max:255'],
+                'middle_name' => ['max:255'],
+                'address' => ['required', 'max:255'],
+                'phone_number' => ['required', 'phone'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'max' => 'Поле :field должно содержать максимум :max символов',
+                'phone' => 'Неверный формат телефона',
+            ]);
             
-            return new View('site.add_reader');
+            if ($validator->fails()) {
+                return new View('site.add_reader', [
+                    'error' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)
+                ]);
+            }
+
+            if (Reader::create($request->all())) {
+                return new View('site.add_reader', [
+                    'success' => 'Читатель успешно добавлен'
+                ]);
+            }
+        }
+        
+        return new View('site.add_reader');
+    }
+
+    public function addBook(Request $request): string
+    {
+        $authors = Author::all();
+
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'title' => ['required', 'max:255'],
+                'id_author' => ['required'],
+                'publication_year' => ['required', 'max:4'],
+                'price' => ['required'],
+                'summary' => ['max:255'],
+                'is_new' => [],
+            ], [
+                'required' => 'Поле :field пусто',
+                'max' => 'Поле :field должно содержать максимум :max символов',
+            ]);
+            
+            if ($validator->fails()) {
+                return new View('site.add_book', [
+                    'error' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE),
+                    'authors' => $authors
+                ]);
+            }
+
+            $data = $request->all();
+            $data['id_status_book'] = 1;
+            $data['is_new'] = $data['is_new'] ?? 0;
+            
+            if (Book::create($data)) {
+                return new View('site.add_book', [
+                    'success' => 'Книга успешно добавлена',
+                    'authors' => $authors
+                ]);
+            }
         }
 
+        return new View('site.add_book', ['authors' => $authors]);
+    }
     
     public function login(Request $request): string
     {
