@@ -1,0 +1,19 @@
+[33me2d5209[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: checkout: moving from main to main
+[33me2d5209[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{1}: reset: moving to e2d5209ae2ab495cdf12282d139eab2d9014480b
+[33me2d5209[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{2}: Branch: renamed refs/heads/main to refs/heads/main
+[33me2d5209[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{4}: checkout: moving from c060613e3c755f68c7385d670b370172eb7c9cd6 to main
+[33mc060613[m HEAD@{5}: commit: FIX
+[33me007a32[m HEAD@{6}: commit: FIX
+[33mf3e924e[m HEAD@{7}: commit: Page add reader + FIX
+[33ma48ed83[m HEAD@{8}: commit: Practical 3
+[33m982eb21[m HEAD@{9}: commit: FIX Page
+[33mcba1567[m HEAD@{10}: commit: DB + Page
+[33m1733016[m HEAD@{11}: commit: Fix Auth page
+[33m5308992[m HEAD@{12}: checkout: moving from main to 5308992
+[33me2d5209[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{13}: commit: Auth page
+[33m5308992[m HEAD@{14}: commit: Practical 2
+[33m92f0ed5[m HEAD@{15}: commit: FIX Practical 1
+[33m6de53af[m HEAD@{16}: reset: moving to HEAD~1
+[33m26f1077[m HEAD@{17}: commit: Practical 1
+[33m6de53af[m HEAD@{18}: Branch: renamed refs/heads/master to refs/heads/main
+[33m6de53af[m HEAD@{20}: commit (initial): Practical 1

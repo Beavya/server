@@ -12,24 +12,24 @@ class Request
 
     public function __construct()
     {
-        $this->body = $_REQUEST;
+        $this->body = $_POST + $_GET;
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->headers = getallheaders() ?? [];
     }
 
-    public function all():array
+    public function all(): array
     {
         return $this->body + $this->files();
     }
 
-    public function get($field, $value):void
+    public function set($field, $value): void
     {
         $this->body[$field] = $value;
     }
 
-    public function set($field)
+    public function get($field)
     {
-        $this->body[$field];
+        return $this->body[$field] ?? null;
     }
 
     public function files(): array
