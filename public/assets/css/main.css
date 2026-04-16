@@ -14,6 +14,67 @@
     --font-weight-semibold: 600;
 }
 
-body{
-    font-family: 'Rubik';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg-page);
+    background-image: url('/server/assets/img/bg.png');
+    background-position: center;
+    background-repeat: repeat;
+}
+
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg-page);
+    background-image: url('/server/assets/img/bg.png');
+    background-position: center;
+    background-repeat: repeat;
+}
+
+header {
+    padding: 30px 140px;
+    background-color: var(--color-primary);
+    font-family: 'Ubuntu Mono', sans-serif;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.link a {
+    font-size: 32px;
+    text-decoration: none;
+    color: var(--color-text-light);
+    transition: all 0.3s ease;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+.logo{
+    font-size: 40px;
+    color: var(--color-text-light);
 }
