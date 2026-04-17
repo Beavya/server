@@ -10,6 +10,7 @@ use Src\Validator\Validator;
 use Model\Reader;
 use Model\Book;
 use Model\Author;
+use Model\Loan;
 
 class Site
 {
@@ -84,20 +85,18 @@ class Site
         return new View('site.add_reader');
     }
 
-public function addBook(Request $request): string
+    public function addBook(Request $request): string
 {
     $authors = Author::all();
 
-    // Проверка на отправку файла
-    if (!isset($_FILES['cover']) || $_FILES['cover']['error'] === UPLOAD_ERR_NO_FILE) {
-        return new View('site.add_book', [
-            'error' => 'Выберите файл обложки',
-            'authors' => $authors
-        ]);
-    }
-
     if ($request->method === 'POST') {
-        // Валидация текстовых полей (без cover)
+        if (!isset($_FILES['cover']) || $_FILES['cover']['error'] === UPLOAD_ERR_NO_FILE) {
+            return new View('site.add_book', [
+                'error' => 'Выберите файл обложки',
+                'authors' => $authors
+            ]);
+        }
+
         $validator = new Validator($request->all(), [
             'title' => ['required', 'max:255'],
             'id_author' => ['required'],
@@ -144,6 +143,49 @@ public function addBook(Request $request): string
 
     return new View('site.add_book', ['authors' => $authors]);
 }
+
+    public function addLoan(Request $request): string
+    {
+        $readers = Reader::all();
+        $books = Book::where('id_status_book', 1)->get();
+
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'card_number' => ['required'],
+                'id_book' => ['required'],
+                'return_date' => ['required', 'future_date'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'future_date' => 'Дата возврата должна быть в будущем',
+            ]);
+            
+            if ($validator->fails()) {
+                return new View('site.add_loan', [
+                    'error' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE),
+                    'readers' => $readers,
+                    'books' => $books
+                ]);
+            }
+
+            $data = $request->all();
+            $data['loan_date'] = date('Y-m-d');
+            $data['id_status_loan'] = 1;
+
+            if (Loan::create($data)) {
+                $book = Book::find($data['id_book']);
+                $book->id_status_book = 2;
+                $book->save();
+
+                return new View('site.add_loan', [
+                    'success' => 'Книга успешно выдана',
+                    'readers' => $readers,
+                    'books' => $books
+                ]);
+            }
+        }
+
+        return new View('site.add_loan', ['readers' => $readers, 'books' => $books]);
+    }
     
     public function login(Request $request): string
     {

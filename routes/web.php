@@ -9,5 +9,7 @@ Route::add(['GET', 'POST'], '/readers/add', [Controller\Site::class, 'addReader'
     ->middleware('auth', 'librarian');
 Route::add(['GET', 'POST'], '/books/add', [Controller\Site::class, 'addBook'])
     ->middleware('auth', 'librarian');
+Route::add(['GET', 'POST'], '/loans/add', [Controller\Site::class, 'addLoan'])
+    ->middleware('auth', 'librarian');
 Route::add(['GET', 'POST'], '/login', [Controller\Site::class, 'login']);
 Route::add('GET', '/logout', [Controller\Site::class, 'logout']);

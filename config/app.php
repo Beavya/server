@@ -20,5 +20,6 @@ return [
         'phone' => \Validators\PhoneValidator::class,
         'price' => \Validators\PriceValidator::class,
         'image' => \Validators\ImageValidator::class,
+        'future_date' => \Validators\FutureDateValidator::class,
     ],
 ];
