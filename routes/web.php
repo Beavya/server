@@ -13,3 +13,5 @@ Route::add(['GET', 'POST'], '/loans/add', [Controller\Site::class, 'addLoan'])
     ->middleware('auth', 'librarian');
 Route::add(['GET', 'POST'], '/login', [Controller\Site::class, 'login']);
 Route::add('GET', '/logout', [Controller\Site::class, 'logout']);
+Route::add('GET', '/readers', [Controller\Site::class, 'readers'])
+    ->middleware('auth', 'librarian');

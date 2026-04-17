@@ -31,6 +31,5 @@
             <?= $content ?? ''; ?>
         </div>
     </div>
-    
 </body>
 </html>

@@ -19,4 +19,12 @@ class Reader extends Model
         'address',
         'phone_number'
     ];
+
+    public function isActive(): bool
+    {
+        return Loan::where('card_number', $this->card_number)
+            ->where('id_status_loan', 1)
+            ->exists();
+    }
+    
 }

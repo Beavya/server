@@ -223,4 +223,21 @@ class Site
         app()->auth::logout();
         app()->route->redirect('/hello');
     }
+    
+        public function readers(Request $request): string
+    {
+        $search = $request->get('search') ?? '';
+        
+        if ($search) {
+            $readers = Reader::where('last_name', 'like', "%$search%")
+                ->orWhere('first_name', 'like', "%$search%")
+                ->orWhere('middle_name', 'like', "%$search%")
+                ->get();
+        } else {
+            $readers = Reader::all();
+        }
+        
+        return new View('site.readers', ['readers' => $readers, 'search' => $search]);
+    }
 }
+
