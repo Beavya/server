@@ -1,0 +1,23 @@
+.book-group {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.cover {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 3px solid var(--color-primary);
+    border-radius: 10px;
+}
+
+.loan-dates {
+    font-size: 24px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-overdue);
+}
+
+.status-not-returned {
+    color: var(--color-success);
+}

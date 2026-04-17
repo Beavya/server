@@ -2,6 +2,7 @@
 @import url('/server/assets/css/form.css');
 @import url('/server/assets/css/readers.css');
 @import url('/server/assets/css/reader_profile.css');
+@import url('/server/assets/css/book.css');
 
 :root {
     --color-bg-page: #f8f9ff;

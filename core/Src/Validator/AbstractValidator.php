@@ -12,10 +12,10 @@ abstract class AbstractValidator
 
     public function __construct(string $fieldName, $value, $args = [], string $message = null)
     {
-        $this->field = $fieldName;
-        $this->value = $value;
-        $this->args = $args;
-        $this->message = $message ?? $this->message;
+        $this->field       = $fieldName;
+        $this->value       = $value;
+        $this->args        = $args;
+        $this->message     = $message ?? $this->message;
         $this->messageKeys = [
             ':value' => $this->value,
             ':field' => $this->field
@@ -24,16 +24,19 @@ abstract class AbstractValidator
 
     public function validate()
     {
-        if (!$this->rule())
+        if (!$this->rule()) {
             return $this->messageError();
+        }
+
         return true;
     }
 
     private function messageError(): string
     {
         foreach ($this->messageKeys as $key => $value) {
-            $message = str_replace($key, (string)$value, $this->message);
+            $message = str_replace($key, (string) $value, $this->message);
         }
+
         return $message;
     }
 

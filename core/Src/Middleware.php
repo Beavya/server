@@ -32,6 +32,7 @@ class Middleware
     public function go(string $httpMethod, string $uri, Request $request): Request
     {
         $request = $this->runAppMiddlewares($request);
+
         return $this->runMiddlewares($httpMethod, $uri, $request);
     }
 
@@ -61,6 +62,7 @@ class Middleware
     private function getMiddlewaresForRoute(string $httpMethod, string $uri): array
     {
         $dispatcherMiddleware = new Dispatcher($this->middlewareCollector->getData());
+
         return $dispatcherMiddleware->dispatch($httpMethod, $uri)[1] ?? [];
     }
 }

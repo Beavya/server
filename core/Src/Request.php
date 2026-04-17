@@ -12,8 +12,8 @@ class Request
 
     public function __construct()
     {
-        $this->body = $_REQUEST;
-        $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->body    = $_REQUEST;
+        $this->method  = $_SERVER['REQUEST_METHOD'];
         $this->headers = getallheaders() ?? [];
     }
 
@@ -42,6 +42,7 @@ class Request
         if (array_key_exists($key, $this->body)) {
             return $this->body[$key];
         }
+
         throw new Error('Accessing a non-existent property');
     }
 }

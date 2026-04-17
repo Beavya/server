@@ -11,6 +11,7 @@ class LibrarianMiddleware
         if (app()->auth::user()->id_role != 2) {
             app()->route->redirect('/hello');
         }
+
         return $request;
     }
 }

@@ -11,6 +11,7 @@ class PhoneValidator extends AbstractValidator
     public function rule(): bool
     {
         $phone = preg_replace('/[^0-9]/', '', $this->value);
+
         return preg_match('/^(7|8)[0-9]{10}$/', $phone);
     }
 }

@@ -11,6 +11,7 @@ class ImageValidator extends AbstractValidator
     public function rule(): bool
     {
         $allowed = ['image/jpeg', 'image/png', 'image/gif'];
+
         return in_array($this->value['type'], $allowed);
     }
 }

@@ -11,6 +11,7 @@ class AdminMiddleware
         if (app()->auth::user()->id_role != 1) {
             app()->route->redirect('/hello');
         }
+
         return $request;
     }
 }

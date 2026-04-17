@@ -23,6 +23,7 @@ class Route
         self::single()->routeCollector->addRoute($httpMethod, $route, $action);
         self::single()->currentHttpMethod = $httpMethod;
         self::single()->currentRoute = $route;
+
         return self::single();
     }
 
@@ -40,6 +41,7 @@ class Route
     public function setPrefix(string $value = ''): self
     {
         $this->prefix = $value;
+
         return $this;
     }
 
@@ -56,34 +58,40 @@ class Route
     public function middleware(...$middlewares): self
     {
         Middleware::single()->add($this->currentHttpMethod, $this->currentRoute, $middlewares);
+
         return $this;
     }
 
     public function start(): void
     {
         $httpMethod = $_SERVER['REQUEST_METHOD'];
-        $uri = $_SERVER['REQUEST_URI'];
+        $uri        = $_SERVER['REQUEST_URI'];
 
         if (false !== $pos = strpos($uri, '?')) {
             $uri = substr($uri, 0, $pos);
         }
+
         $uri = rawurldecode($uri);
         $uri = substr($uri, strlen($this->prefix));
 
         $dispatcher = new Dispatcher($this->routeCollector->getData());
-        $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+        $routeInfo  = $dispatcher->dispatch($httpMethod, $uri);
 
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
                 throw new Error('NOT_FOUND');
+
             case Dispatcher::METHOD_NOT_ALLOWED:
                 throw new Error('METHOD_NOT_ALLOWED');
+
             case Dispatcher::FOUND:
                 $handler = $routeInfo[1];
-                $vars = array_values($routeInfo[2]);
-                $vars[] = Middleware::single()->runMiddlewares($httpMethod, $uri, new Request());
-                $class = $handler[0];
+                $vars    = array_values($routeInfo[2]);
+                $vars[]  = Middleware::single()->runMiddlewares($httpMethod, $uri, new Request());
+
+                $class  = $handler[0];
                 $action = $handler[1];
+
                 call_user_func([new $class, $action], ...$vars);
                 break;
         }

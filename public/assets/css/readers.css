@@ -34,7 +34,6 @@
     padding: 16px 40px;
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
     background-color: var(--color-text-light);
     border: 3px solid transparent;
     border-radius: 10px;
@@ -90,7 +89,7 @@
 
 .status-inactive {
     font-size: 24px;
-    color: var(--color-error);
+    color: var(--color-overdue);
 }
 
 .status-active {
@@ -100,7 +99,7 @@
 
 .status-overdue {
     font-size: 24px;
-    color: var(--color-success);
+    color: var(--color-error);
 }
 
 .btn-reset {
@@ -119,7 +118,7 @@
     padding: 15px;
     border-radius: 20px;
     background-color: var(--color-primary);
-    font-size: 30px;
+    font-size: 28px;
     font-weight: var(--font-weight-semibold);
     color: var(--color-text-light);
     transition: all 0.3s ease;

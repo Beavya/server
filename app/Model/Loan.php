@@ -23,4 +23,18 @@ class Loan extends Model
     {
         return $this->belongsTo(Book::class, 'id_book', 'id_book');
     }
+
+    public function reader()
+    {
+        return $this->belongsTo(Reader::class, 'card_number', 'card_number');
+    }
+
+    public function isOverdue(): bool
+    {
+        if ($this->actual_return_date && $this->return_date) {
+            return $this->actual_return_date > $this->return_date;
+        }
+
+        return false;
+    }
 }

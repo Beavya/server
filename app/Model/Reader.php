@@ -26,5 +26,4 @@ class Reader extends Model
             ->where('id_status_loan', 1)
             ->exists();
     }
-    
 }

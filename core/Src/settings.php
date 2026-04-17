@@ -18,6 +18,7 @@ class Settings
         if (array_key_exists($key, $this->_settings)) {
             return $this->_settings[$key];
         }
+
         throw new Error('Accessing a non-existent property');
     }
 

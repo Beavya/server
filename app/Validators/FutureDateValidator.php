@@ -11,6 +11,7 @@ class FutureDateValidator extends AbstractValidator
     public function rule(): bool
     {
         $today = date('Y-m-d');
+
         return $this->value > $today;
     }
 }

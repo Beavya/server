@@ -5,17 +5,18 @@ namespace Src\Validator;
 class Validator
 {
     private array $validators = [];
-    private array $errors = [];
-    private array $fields = [];
-    private array $rules = [];
-    private array $messages = [];
+    private array $errors     = [];
+    private array $fields     = [];
+    private array $rules      = [];
+    private array $messages   = [];
 
     public function __construct(array $fields, array $rules, array $messages = [])
     {
         $this->validators = app()->settings->app['validators'] ?? [];
-        $this->fields = $fields;
-        $this->rules = $rules;
-        $this->messages = $messages;
+        $this->fields     = $fields;
+        $this->rules      = $rules;
+        $this->messages   = $messages;
+
         $this->validate();
     }
 
@@ -33,14 +34,15 @@ class Validator
             [$validatorName, $args] = count($tmp) > 1 ? $tmp : [$validatorName, null];
             $args = isset($args) ? explode(',', $args) : [];
 
-            $validatorClass = $this->validators[$validatorName];
-            if (!class_exists($validatorClass)) {
+            $validatorClass = $this->validators[$validatorName] ?? null;
+
+            if (!$validatorClass || !class_exists($validatorClass)) {
                 continue;
             }
 
             $validator = new $validatorClass(
                 $fieldName,
-                $this->fields[$fieldName],
+                $this->fields[$fieldName] ?? null,
                 $args,
                 $this->messages[$validatorName] ?? null
             );
@@ -58,6 +60,6 @@ class Validator
 
     public function fails(): bool
     {
-        return (bool)count($this->errors);
+        return (bool) count($this->errors);
     }
 }

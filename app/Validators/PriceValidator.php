@@ -10,10 +10,10 @@ class PriceValidator extends AbstractValidator
 
     public function rule(): bool
     {
-        if (!preg_match('/^\d+$/', (string)$this->value)) {
+        if (!preg_match('/^\d+$/', (string) $this->value)) {
             return false;
         }
-        
+
         return intval($this->value) > 0;
     }
 }

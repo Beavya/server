@@ -15,6 +15,7 @@
 
     <form method="post" enctype="multipart/form-data" class="form-group">
         <input type="hidden" name="csrf_token" value="<?= app()->auth::generateCSRF() ?>">
+
         <div class="form">
             <div class="form-row">
                 <label class="checkbox-label">обложка:</label>
@@ -26,7 +27,9 @@
             <select name="id_author">
                 <option value="">выберите автора</option>
                 <?php foreach ($authors as $author): ?>
-                    <option value="<?= $author->id_author ?>"><?= htmlspecialchars($author->last_name . ' ' . $author->first_name . ' ' . $author->middle_name) ?></option>
+                    <option value="<?= $author->id_author ?>">
+                        <?= htmlspecialchars($author->last_name . ' ' . $author->first_name . ' ' . $author->middle_name) ?>
+                    </option>
                 <?php endforeach; ?>
             </select>
 
@@ -34,14 +37,15 @@
                 <input type="number" name="publication_year" placeholder="год издания">
                 <input type="number" name="price" placeholder="цена">
             </div>
-            
+
             <div class="form-row">
                 <label class="checkbox-label">новое издание?</label>
-                <input type="checkbox" name="is_new" value="1"> 
+                <input type="checkbox" name="is_new" value="1">
             </div>
-                
+
             <textarea name="summary" placeholder="аннотация" rows="3"></textarea>
         </div>
+
         <button type="submit" class="btn-submit">Добавить</button>
     </form>
 </div>

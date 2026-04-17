@@ -8,7 +8,10 @@ trait SingletonTrait
 
     public static function single(): self
     {
-        if (empty(self::$instance)) self::$instance = new static();
+        if (empty(self::$instance)) {
+            self::$instance = new static();
+        }
+
         return self::$instance;
     }
 

@@ -20,4 +20,19 @@ class Book extends Model
         'is_new',
         'cover'
     ];
+
+    public function loans()
+    {
+        return $this->hasMany(Loan::class, 'id_book', 'id_book');
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class, 'id_author', 'id_author');
+    }
+
+    public function totalLoansCount(): int
+    {
+        return $this->loans()->count();
+    }
 }

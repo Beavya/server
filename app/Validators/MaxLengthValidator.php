@@ -12,6 +12,7 @@ class MaxLengthValidator extends AbstractValidator
     {
         $max = $this->args[0] ?? 255;
         $this->messageKeys[':max'] = $max;
+
         return strlen($this->value) <= $max;
     }
 }

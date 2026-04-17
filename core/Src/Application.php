@@ -11,16 +11,17 @@ use Src\Auth\Auth;
 class Application
 {
     private Settings $settings;
-    private Route $route;
-    private Capsule $dbManager;
+    private Route    $route;
+    private Capsule  $dbManager;
     private $auth;
 
     public function __construct(Settings $settings)
     {
-        $this->settings = $settings;
-        $this->route = Route::single()->setPrefix($this->settings->getRootPath());
-        $this->dbManager = new Capsule();
-        $this->auth = new $this->settings->app['auth'];
+        $this->settings   = $settings;
+        $this->route      = Route::single()->setPrefix($this->settings->getRootPath());
+        $this->dbManager  = new Capsule();
+        $this->auth       = new $this->settings->app['auth'];
+
         $this->dbRun();
         $this->auth::init(new $this->settings->app['identity']);
     }
@@ -35,6 +36,7 @@ class Application
             case 'auth':
                 return $this->auth;
         }
+
         throw new Error('Accessing a non-existent property');
     }
 

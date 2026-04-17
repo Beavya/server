@@ -11,6 +11,7 @@ class Auth
     public static function init(IdentityInterface $user): void
     {
         self::$user = $user;
+
         if (self::user()) {
             self::login(self::user());
         }
@@ -26,14 +27,17 @@ class Auth
     {
         if ($user = self::$user->attemptIdentity($credentials)) {
             self::login($user);
+
             return true;
         }
+
         return false;
     }
 
     public static function user()
     {
         $id = Session::get('id') ?? 0;
+
         return self::$user->findIdentity($id);
     }
 
@@ -45,6 +49,7 @@ class Auth
     public static function logout(): bool
     {
         Session::clear('id');
+
         return true;
     }
 
@@ -52,6 +57,7 @@ class Auth
     {
         $token = md5(time());
         Session::set('csrf_token', $token);
+
         return $token;
     }
 }

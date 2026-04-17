@@ -6,7 +6,6 @@ use Exception;
 
 class View
 {
-
     private string $view = '';
     private array $data = [];
     private string $root = '';
@@ -22,8 +21,10 @@ class View
     private function getRoot(): string
     {
         global $app;
+
         $root = $app->settings->getRootPath();
         $path = $app->settings->getViewsPath();
+
         return $_SERVER['DOCUMENT_ROOT'] . $root . $path;
     }
 
@@ -35,6 +36,7 @@ class View
     private function getPathToView(string $view = ''): string
     {
         $view = str_replace('.', '/', $view);
+
         return $this->getRoot() . "/" . $view . ".php";
     }
 
@@ -47,6 +49,7 @@ class View
             ob_start();
             require $path;
             $content = ob_get_clean();
+
             return require($this->getPathToMain());
         }
 
@@ -57,5 +60,4 @@ class View
     {
         return $this->render($this->view, $this->data);
     }
-
 }

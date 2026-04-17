@@ -1,4 +1,3 @@
-
 <div class="card">
     <h2 class="title">Добавить библиотекаря</h2>
 
@@ -16,15 +15,17 @@
 
     <form method="post" class="form-group">
         <input type="hidden" name="csrf_token" value="<?= app()->auth::generateCSRF() ?>">
+
         <div class="form">
             <input type="text" name="login" placeholder="логин">
-            <input type="password" name="password"  placeholder="пароль">
+            <input type="password" name="password" placeholder="пароль">
             <input type="text" name="last_name" placeholder="фамилия">
             <input type="text" name="first_name" placeholder="имя">
             <input type="text" name="middle_name" placeholder="отчество">
             <input type="text" name="address" placeholder="адрес">
             <input type="tel" name="phone_number" placeholder="номер телефона">
         </div>
+
         <button type="submit" class="btn-submit">Добавить</button>
     </form>
 </div>

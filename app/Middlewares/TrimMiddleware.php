@@ -13,6 +13,7 @@ class TrimMiddleware
                 $request->set($key, trim($value));
             }
         }
+
         return $request;
     }
 }

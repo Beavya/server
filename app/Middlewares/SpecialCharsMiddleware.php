@@ -13,6 +13,7 @@ class SpecialCharsMiddleware
                 $request->set($key, htmlspecialchars($value));
             }
         }
+
         return $request;
     }
 }

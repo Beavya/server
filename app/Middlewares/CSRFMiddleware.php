@@ -14,11 +14,11 @@ class CSRFMiddleware
             return $request;
         }
 
-        if (empty($request->get('csrf_token')) || 
+        if (empty($request->get('csrf_token')) ||
             $request->get('csrf_token') !== Session::get('csrf_token')) {
             throw new Exception('Request not authorized');
         }
-        
+
         return $request;
     }
 }
