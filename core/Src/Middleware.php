@@ -36,7 +36,7 @@ class Middleware
         return $this->runMiddlewares($httpMethod, $uri, $request);
     }
 
-    public function runMiddlewares(string $httpMethod, string $uri, Request $request): Request
+    private function runMiddlewares(string $httpMethod, string $uri, Request $request): Request
     {
         $routeMiddleware = app()->settings->app['routeMiddleware'] ?? [];
 
@@ -48,12 +48,13 @@ class Middleware
         return $request;
     }
 
-    public function runAppMiddlewares(Request $request): Request
+    private function runAppMiddlewares(Request $request): Request
     {
         $routeMiddleware = app()->settings->app['routeAppMiddleware'] ?? [];
 
-        foreach ($routeMiddleware as $class) {
-            $request = (new $class)->handle($request);
+        foreach ($routeMiddleware as $name => $class) {
+            $args = explode(':', $name);
+            $request = (new $class)->handle($request, $args[1] ?? null) ?? $request;
         }
 
         return $request;
