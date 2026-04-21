@@ -30,7 +30,7 @@ a {
 
 body {
     box-sizing: border-box;
-    font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace;
+    font-family: 'Avenir', 'Montserrat', sans-serif;
 }
 
 .wrapper {
@@ -52,7 +52,7 @@ body {
 header {
     padding: 30px 140px;
     background-color: var(--color-primary);
-    font-family: 'Avenir', 'Montserrat', sans-serif;
+        font-family: 'Consolas', 'Monaco', 'DejaVu Sans Mono', monospace;
 }
 
 nav {
