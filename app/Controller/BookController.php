@@ -57,7 +57,7 @@ class BookController
 
             $filename = time() . '_' . $_FILES['cover']['name'];
             move_uploaded_file($_FILES['cover']['tmp_name'], __DIR__ . '/../../public/uploads/' . $filename);
-            $data['cover'] = '/server/uploads/' . $filename;
+            $data['cover'] = '/uploads/' . $filename;
 
             if (Book::create($data)) {
                 return new View('site.add_book', [

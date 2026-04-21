@@ -30,11 +30,11 @@ class AuthController
 
         if (Auth::attempt($request->all())) {
             if (app()->auth::user()->id_role == 1) {
-                header('Location: /server/add_librarian');
+                header('Location: /add_librarian');
                 exit;
             }
 
-            header('Location: /server/books');
+            header('Location: /books');
             exit;
         }
 
@@ -44,6 +44,6 @@ class AuthController
     public function logout(): void
     {
         app()->auth::logout();
-        app()->route->redirect('/login');
+        app()->route->redirect('/');
     }
 }

@@ -2,7 +2,7 @@
 
 use Src\Route;
 
-Route::add(['GET', 'POST'], '/login', [Controller\AuthController::class, 'login']);
+Route::add(['GET', 'POST'], '/', [Controller\AuthController::class, 'login']);
 Route::add('GET', '/logout', [Controller\AuthController::class, 'logout']);
 
 Route::add(['GET', 'POST'], '/add_librarian', [Controller\LibrarianController::class, 'addLibrarian'])
