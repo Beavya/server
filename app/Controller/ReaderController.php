@@ -19,9 +19,11 @@ class ReaderController
                 'first_name'   => ['required', 'max:255'],
                 'middle_name'  => ['max:255'],
                 'address'      => ['required', 'max:255'],
+                'phone_number' => ['required', 'min:16'],
             ], [
                 'required' => 'Поле :field пусто',
                 'max'      => 'Поле :field должно содержать максимум :max символов',
+                'min'      => 'Поле :field должно содержать минимум :min символов',
             ]);
 
             if ($validator->fails()) {

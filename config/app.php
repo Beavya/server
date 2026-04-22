@@ -29,6 +29,7 @@ return [
     'validators' => [
         'required'    => \Validators\RequiredValidator::class,
         'unique'      => \Validators\UniqueValidator::class,
+        'min'         => \Validators\MinLengthValidator::class,
         'max'         => \Validators\MaxLengthValidator::class,
         'price'       => \Validators\PriceValidator::class,
         'image'       => \Validators\ImageValidator::class,
