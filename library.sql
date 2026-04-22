@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Апр 19 2026 г., 17:14
+-- Время создания: Апр 22 2026 г., 18:57
 -- Версия сервера: 10.4.32-MariaDB
 -- Версия PHP: 8.2.12
 
@@ -177,6 +177,18 @@ INSERT INTO `statuses_loans` (`id_status_loan`, `status`) VALUES
 (2, 'возвращена'),
 (3, 'просрочена');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `tokens`
+--
+
+CREATE TABLE `tokens` (
+  `id_token` int(11) NOT NULL,
+  `id_staff` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -237,6 +249,14 @@ ALTER TABLE `statuses_loans`
   ADD PRIMARY KEY (`id_status_loan`);
 
 --
+-- Индексы таблицы `tokens`
+--
+ALTER TABLE `tokens`
+  ADD PRIMARY KEY (`id_token`),
+  ADD UNIQUE KEY `token` (`token`),
+  ADD KEY `id_staff` (`id_staff`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -274,7 +294,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT для таблицы `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id_staff` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_staff` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT для таблицы `statuses_books`
@@ -287,6 +307,12 @@ ALTER TABLE `statuses_books`
 --
 ALTER TABLE `statuses_loans`
   MODIFY `id_status_loan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `tokens`
+--
+ALTER TABLE `tokens`
+  MODIFY `id_token` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -312,6 +338,12 @@ ALTER TABLE `books_loans`
 --
 ALTER TABLE `staff`
   ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `roles` (`id_role`);
+
+--
+-- Ограничения внешнего ключа таблицы `tokens`
+--
+ALTER TABLE `tokens`
+  ADD CONSTRAINT `tokens_ibfk_1` FOREIGN KEY (`id_staff`) REFERENCES `staff` (`id_staff`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
