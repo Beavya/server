@@ -2,8 +2,8 @@
 
 namespace Validators;
 
-use Beavya\Validation\AbstractValidator;
-// use Src\Validator\AbstractValidator;
+// use Beavya\Validation\AbstractValidator;
+use Src\Validator\AbstractValidator;
 
 class AfterDateValidator extends AbstractValidator
 {

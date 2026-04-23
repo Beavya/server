@@ -2,7 +2,8 @@
 
 namespace Validators;
 
-use Beavya\Validation\AbstractValidator;
+// use Beavya\Validation\AbstractValidator;
+use Src\Validator\AbstractValidator;
 
 class MinLengthValidator extends AbstractValidator
 {

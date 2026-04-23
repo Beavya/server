@@ -4,8 +4,8 @@ namespace Controller;
 
 use Src\View;
 use Src\Request;
-// use Src\Validator\Validator;
-use Beavya\Validation\Validator;
+use Src\Validator\Validator;
+// use Beavya\Validation\Validator;
 use Model\Book;
 use Model\Author;
 use Model\Loan;

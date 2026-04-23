@@ -6,8 +6,8 @@ use Src\View;
 use Src\Request;
 use Src\Auth\Auth;
 use Model\Token;
-// use Src\Validator\Validator;
-use Beavya\Validation\Validator;
+use Src\Validator\Validator;
+// use Beavya\Validation\Validator;
 
 class AuthController
 {
